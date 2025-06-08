@@ -14,7 +14,8 @@ jd_text = st.text_area("Paste the Job Description here:", height=200)
 if st.button("Generate Match Summary"):
     if resume_text and jd_text:
         with st.spinner("Analyzing with GPT..."):
-            prompt = f"Given the resume below:
+            prompt = f"""
+            Given the resume below:
 
 {resume_text}
 
@@ -22,7 +23,7 @@ And the job description below:
 
 {jd_text}
 
-Generate a short summary evaluating how well the resume matches the JD, strengths, gaps, and suggestions for improvement."
+Generate a short summary evaluating how well the resume matches the JD, strengths, gaps, and suggestions for improvement."""
             response = openai.ChatCompletion.create(
                 model="gpt-4",
                 messages=[{"role": "user", "content": prompt}]
